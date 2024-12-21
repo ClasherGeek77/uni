@@ -163,7 +163,7 @@ def generate_html(results):
 
     
     # Write to file
-    with open('ahp_final_exam.html', 'w', encoding='utf-8') as f:
+    with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
 
 
