@@ -1,8 +1,15 @@
-> **🎓 University Project Archive**
-> *This repository contains coursework from my university studies (2018-2021).*
-> *It remains archived here to demonstrate my early foundations in Computer Science.*
+# UNI Movie Database Web App
+A Webpack-based movie database application using Bootstrap and Feather Icons.
+
+## Setup
+```bash
+npm install
+```
+
+## Running the Project
+- **Development**: `npm run start-dev`
+- **Build**: `npm run build`
 
 ---
-
 # Movie-Web
 Submission for Course Front-End Web at Indonesia website
