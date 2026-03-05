@@ -1,7 +1,7 @@
-> **🎓 University Project Archive**
-> *This repository contains coursework from my university studies (2018-2021).*
-> *It remains archived here to demonstrate my early foundations in Computer Science.*
+# UNI UI Clone Tokopedia Homepage
+A static UI clone of the Tokopedia homepage built using pure HTML and CSS as part of a university web development assignment.
+
+## How to View
+Simply open `index.html` in any modern web browser.
 
 ---
-
-# Clone-Tokped-Homepage-Rough
