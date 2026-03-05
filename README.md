@@ -1,13 +1,15 @@
-> **🎓 University Project Archive**
-> *This repository contains coursework from my university studies (2018-2021).*
-> *It remains archived here to demonstrate my early foundations in Computer Science.*
+# UNI ML CSV Data Analysis
+A collection of machine learning datasets categorized for easier access.
+
+## Categories
+- **Academic**: Student data and university-related outputs.
+- **Energy**: Electricity consumption and pricing datasets.
+- **Finance**: Income evaluation and e-commerce customer data.
+- **Healthcare**: Body fat, diabetes, and insurance data.
+- **General**: Classic ML datasets like Titanic, MNIST, and more.
 
 ---
-
 # ml-csv 📊
-
-[![Machine Learning](https://img.shields.io/badge/Focus-Machine%20Learning-purple)]()
-[![Pandas](https://img.shields.io/badge/Library-Pandas-blue?logo=pandas)]()
 
 An exploratory repository focused on handling, cleaning, and extracting features from raw CSV datasets for ML pipelines. Part of my academic progression in Computer Science.
 
