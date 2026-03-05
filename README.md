@@ -1,6 +1,7 @@
-> **🎓 University Project Archive**
-> *This repository contains coursework from my university studies (2018-2021).*
-> *It remains archived here to demonstrate my early foundations in Computer Science.*
+# UNI ML Decision Tree Implementation
+A machine learning project implementing Decision Tree algorithms for classification and regression tasks.
+
+## Contents
+- `Decision_Tree_Implementation.ipynb`: Core implementation and exploratory analysis.
 
 ---
-
