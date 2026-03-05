@@ -1,8 +1,10 @@
-> **🎓 University Project Archive**
-> *This repository contains coursework from my university studies (2018-2021).*
-> *It remains archived here to demonstrate my early foundations in Computer Science.*
+# UNI ML Rock Paper Scissors Classification
+An image classification project utilizing Convolutional Neural Networks (CNN) to detect "Rock", "Paper", and "Scissors" hand gestures.
+
+## Contents
+- `Rock_Paper_Scissors_Classification.ipynb`: Model architecture, training logs, and evaluation results.
+
+## Acknowledgements
+Final Submission for Dicoding "Belajar Machine Learning Pemula".
 
 ---
-
-# Deteksi_Gambar_Batu_Gunting_Kertas_Machine_Learning
-Final Submission untuk Dicoding Belajar Machine Learning Pemula
