@@ -21,8 +21,21 @@ To explore and validate the efficacy of additive regression models for predictin
 - **Language**: Python (Jupyter Notebooks / Pandas)
 - **Metrics Evaluated**: RMSE, MAE, MAPE
 
-## 🔬 Use Cases
-- Predictive scaling for cloud infrastructure based on behavioral patterns.
-- Anomaly detection in cyclical data streams.
+## 🚀 Getting Started
 
+### Prerequisites
+- Python 3.8+
+- [Prophet](https://facebook.github.io/prophet/) and other dependencies in `requirements.txt`.
+
+### Installation
+```bash
+pip install -r requirements.txt
+```
+
+### Running the App
+```bash
+streamlit run app.py
+```
+
+---
 > *"Expanding technical depth beyond testing into data intelligence."* — Teddy Lioner
