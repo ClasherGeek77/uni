@@ -1,8 +1,11 @@
-> **🎓 University Project Archive**
-> *This repository contains coursework from my university studies (2018-2021).*
-> *It remains archived here to demonstrate my early foundations in Computer Science.*
+# UNI Web Programming Basics
+A repository for weekly web programming tasks at Tarumanagara University.
+
+## Structure
+The project is organized by weeks:
+- `week1/` to `week5/`: Weekly assignments and exercises.
+
+## How to View
+Navigate into each weekly folder and open the contained HTML files in a browser to see the results.
 
 ---
-
-# B_WebProgramming_535180014
-Repo for Tasks of  Web Programming Class of Tarumanagara University
