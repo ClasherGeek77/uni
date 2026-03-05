@@ -1,6 +1,7 @@
-> **🎓 University Project Archive**
-> *This repository contains coursework from my university studies (2018-2021).*
-> *It remains archived here to demonstrate my early foundations in Computer Science.*
+# UNI ML SVM Implementation
+A machine learning project focusing on Support Vector Machines (SVM) for classification tasks, exploring different kernels and hyperparameter tuning.
+
+## Contents
+- `SVM_Implementation_Analysis.ipynb`: Implementation, visualization, and performance metrics.
 
 ---
-
