@@ -1,0 +1,16 @@
+# IDEs
+.idea/
+.vscode/
+.settings/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Binaries
+*.exe
+*.o
+*.out
+*.obj
+out/
+bin/
