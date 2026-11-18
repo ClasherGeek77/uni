@@ -1,0 +1,12 @@
+# Greenfoot
+*.class
+*.ctxt
+project.greenfoot.bak
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
