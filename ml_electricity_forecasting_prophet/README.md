@@ -1,41 +1,62 @@
-> **🎓 University Project Archive**
-> *This repository contains coursework from my university studies (2018-2021).*
-> *It remains archived here to demonstrate my early foundations in Computer Science.*
+# ml_electricity_forecasting_prophet
 
----
+## what it is
 
-# prophet_forecasting_electricity ⚡
+a Streamlit web app (2025, master's research at Universitas Budi Luhur) that forecasts monthly electricity sales. you upload an Excel file, the app trains three models on it, blends them into one ensemble and plots a 12-month forecast.
 
-[![Machine Learning](https://img.shields.io/badge/Focus-Machine%20Learning-purple)]()
-[![Prophet](https://img.shields.io/badge/Library-Prophet-blue)]()
-[![Academic](https://img.shields.io/badge/Status-M.CompSci-success)]()
+the three models and how they are combined (read from `app.py`):
 
-Part of my M.CompSci research at Universitas Budi Luhur: A practical implementation of Meta's **Prophet** algorithm for time-series forecasting of electricity consumption.
+- Prophet (Meta's forecasting library) with two lagged regressors (net generation and exports, shifted 12 months), tried on 10 training-window sizes, best one kept by MAPE.
+- VAR (vector autoregression, statsmodels) on sales and exports, also tried on 10 window sizes.
+- a bidirectional LSTM (Keras, 64 units, 100 epochs).
+- the ensemble weights (a grid of 66 combinations summing to 1) are picked on the last 12 months by lowest MAPE. RMSE, MAE and MAPE are reported.
 
-## 🎯 Objective
-To explore and validate the efficacy of additive regression models for predicting complex, seasonal time-series data accurately and at scale.
+stack: Python, Streamlit, pandas, prophet, statsmodels, TensorFlow / Keras, scikit-learn, matplotlib.
 
-## 📊 Technical Details
-- **Algorithm**: Prophet (by Meta)
-- **Data Domain**: Energy Consumption / Grid Load
-- **Language**: Python (Jupyter Notebooks / Pandas)
-- **Metrics Evaluated**: RMSE, MAE, MAPE
+## what you need
 
-## 🚀 Getting Started
+- Python 3.9 to 3.12 (`requirements.txt` pins TensorFlow 2.19.0 and numpy 2.0.2, which need that range).
+- a machine that can host TensorFlow and Prophet, and patience: the LSTM alone runs 100 epochs on every upload, expect minutes, not seconds (not timed).
+- an input workbook. `ml_csv_data_analysis/Energy/electricity_dataset.xlsx` in https://github.com/ClasherGeek77/uni has the required columns (checked in the file's header strings); the other `electricity_*.xlsx` files in that folder have them too.
 
-### Prerequisites
-- Python 3.8+
-- [Prophet](https://facebook.github.io/prophet/) and other dependencies in `requirements.txt`.
+the required columns, exactly as the app states them: `Month` (for example `2020-01`), `Electricity Sales to Ultimate Customers`, `Electricity Net Generation, Electric Power Sector`, `Electricity Exports`. extra columns are ignored.
 
-### Installation
+## quick start
+
 ```bash
+git clone https://github.com/ClasherGeek77/uni.git
+cd uni/ml_electricity_forecasting_prophet
+python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
-```
-
-### Running the App
-```bash
 streamlit run app.py
 ```
 
----
-> *"Expanding technical depth beyond testing into data intelligence."* — Teddy Lioner
+`requirements.txt` is a UTF-16 `pip freeze` of the author's environment (it also lists PySide6, which the app does not use). if `pip` cannot read it, re-save it as UTF-8 first. if the pinned set does not install on your platform, install the direct dependencies only: `pip install streamlit pandas numpy matplotlib openpyxl prophet statsmodels tensorflow scikit-learn`.
+
+`.streamlit/config.toml` sets headless mode and port 8501, so the browser does not open by itself. open http://localhost:8501 , click the upload box and choose `../ml_csv_data_analysis/Energy/electricity_dataset.xlsx`.
+
+you should see a spinner, then an "Actual vs Forecasted (Evaluation Period)" plot with the black actual line against Prophet, VAR, BiLSTM and the red ensemble line, then a "Future Forecast (Next 12 Months)" plot and a table of the forecast per month. not run here (TensorFlow and Prophet are heavy installs); the behaviour above is read from `app.py`.
+
+## how to read the code
+
+`app.py` is one script with no functions except `evaluate`:
+
+1. read the Excel, set `Month` as index, forward/back-fill gaps, build the 12-month lags.
+2. hold out the last 12 months as the evaluation set.
+3. Prophet loop, VAR loop, BiLSTM, ensemble weight search.
+4. refit each model on all data and forecast the next 12 months.
+
+## if it breaks
+
+| symptom | cause | fix |
+| --- | --- | --- |
+| `ValueError: min() arg is an empty sequence` | every training window failed or the series is too short (windows under 24 rows are skipped) | upload a longer series, at least a few years of monthly data |
+| `KeyError` naming a column | the workbook lacks one of the four required columns | rename or add the column |
+| `ImportError: openpyxl` | needed by `read_excel` | `pip install openpyxl` |
+| `FutureWarning` about `fillna(method=...)` | pandas 2.2 deprecation | harmless here; replace with `.ffill()` / `.bfill()` before moving to pandas 3 |
+| prophet or tensorflow fails to install | unsupported Python version or CPU architecture | use Python 3.9 to 3.12, or run it on Google Colab (https://colab.research.google.com/) |
+| page stays on the spinner | the BiLSTM trains 100 epochs per upload | wait, or lower `epochs=100` in `app.py` |
+
+## next
+
+the sample data and the other course notebooks: https://github.com/ClasherGeek77/uni
