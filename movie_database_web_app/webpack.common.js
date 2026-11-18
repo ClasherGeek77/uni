@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -23,6 +24,10 @@ module.exports = {
         ]
     },
     plugins: [
+        // the TMDB key is read from the environment at build time, never committed
+        new webpack.DefinePlugin({
+            TMDB_API_KEY: JSON.stringify(process.env.TMDB_API_KEY || "")
+        }),
         new HtmlWebpackPlugin({
             template: "./src/index.html",
             filename: "index.html"

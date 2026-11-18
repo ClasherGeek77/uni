@@ -23,7 +23,7 @@ function main () {
   const getMovie = async () => {
     try {
       const response = await fetch(
-                `${baseUrl}/movie/popular?api_key=REDACTED_TMDB_KEY`
+                `${baseUrl}/movie/popular?api_key=${TMDB_API_KEY}`
       )
       const responseJson = await response.json()
       if (responseJson.error) {
