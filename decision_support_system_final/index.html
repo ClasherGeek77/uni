@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pendukung Keputusan Pemilihan Rumah Sakit</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-2">
+            Sistem Pendukung Keputusan Pemilihan Rumah Sakit
+        </h1>
+        <h2 class="text-xl text-center text-gray-600 mb-8">
+            Menggunakan Metode Analytical Hierarchy Process (AHP) Oleh Teddy Lioner UBL 2311600130
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Bobot Kriteria</h3>
+                <canvas id="criteriaChart"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Skor Akhir Rumah Sakit</h3>
+                <canvas id="hospitalChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+   <script>
+    const results = {"criteria_weights": {"Fasilitas": 0.46612522594898576, "Tenaga Medis": 0.2772933822052621, "Aksesibilitas": 0.16076207571801565, "Biaya": 0.0958193161277365}, "alternative_weights": {"Fasilitas": {"RSCM": 0.4594866858019397, "RS Premier Bintaro": 0.31918216898373614, "RS Pondok Indah": 0.2213311452143242}, "Tenaga Medis": {"RSCM": 0.5237583058463597, "RS Premier Bintaro": 0.27854581958984653, "RS Pondok Indah": 0.1976958745637937}, "Aksesibilitas": {"RSCM": 0.34342867119148024, "RS Premier Bintaro": 0.4234718855009782, "RS Pondok Indah": 0.23309944330754154}, "Biaya": {"RSCM": 0.28571428571428575, "RS Premier Bintaro": 0.35714285714285715, "RS Pondok Indah": 0.35714285714285715}}, "final_scores": {"RSCM": 0.44200030083310476, "RS Premier Bintaro": 0.32831717670233024, "RS Pondok Indah": 0.22968252246456503}, "CR": 0.009696812203041144};
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Bobot Kriteria Chart
+        const criteriaCtx = document.getElementById('criteriaChart').getContext('2d');
+        new Chart(criteriaCtx, {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(results.criteria_weights),
+                datasets: [{
+                    data: Object.values(results.criteria_weights),
+                    backgroundColor: ['#4C51BF', '#48BB78', '#4299E1', '#ECC94B', '#F56565']
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+
+        // Skor Akhir Rumah Sakit Chart
+        const hospitalCtx = document.getElementById('hospitalChart').getContext('2d');
+        new Chart(hospitalCtx, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(results.final_scores),
+                datasets: [{
+                    label: 'Skor Akhir',
+                    data: Object.values(results.final_scores),
+                    backgroundColor: ['#4C51BF', '#48BB78', '#4299E1', '#ECC94B', '#F56565']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
